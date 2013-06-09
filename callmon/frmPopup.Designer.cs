@@ -47,14 +47,18 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.lblDateAndTime);
             this.Controls.Add(this.lblNumber);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPopup";
-            this.ShowInTaskbar = false;
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.SystemColors.Control;
+            this.VisibleChanged += new System.EventHandler(this.frmPopup_VisibleChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPopup_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -29,31 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbxOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbxOutput
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(386, 328);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.UseWaitCursor = true;
+            this.tbxOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.tbxOutput.Location = new System.Drawing.Point(12, 12);
+            this.tbxOutput.Multiline = true;
+            this.tbxOutput.Name = "tbxOutput";
+            this.tbxOutput.ReadOnly = true;
+            this.tbxOutput.Size = new System.Drawing.Size(386, 333);
+            this.tbxOutput.TabIndex = 0;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 352);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(410, 357);
+            this.Controls.Add(this.tbxOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "callmon - by n3rdkeller";
-            this.UseWaitCursor = true;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -62,7 +63,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbxOutput;
+
     }
 }
 
