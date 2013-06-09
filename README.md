@@ -12,4 +12,4 @@ you need to call #96*5* with a phone connected to your fb before starting.
 
 screenshot
 =======
-![screenshot](callmon_screenshot_censored.png)
+![screenshot](callmon_screen_censored.png)
