@@ -24,11 +24,6 @@ namespace callmon
 
         NetworkStream stream;
 
-        bool stillringing { get; set; }
-        string caller = string.Empty;
-
-        frmPopup notification = new frmPopup();
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             try
@@ -52,53 +47,72 @@ namespace callmon
         {
             StreamReader reader = new StreamReader(stream);
             string fbstatus = string.Empty;
-            string[] currentline = new string[10];
 
             while (client.Connected)        
                 {
                 if (stream.DataAvailable)
                 {
                     fbstatus = reader.ReadLine();
-
-                    addtolog(fbstatus);
-
-                    currentline = fbstatus.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-
-                    if (currentline.Length != 1)
+                    if (fbstatus != "")
                     {
-                        NewCallmonEvent(Convert.ToString(currentline.GetValue(0)),
-                            Convert.ToString(currentline.GetValue(1)),
-                            Convert.ToString(currentline.GetValue(3)));
+                        addtolog(fbstatus);
+
+                        NewCallmonEvent(fbstatus);
                     }
+
                 }
                 Thread.Sleep(50);
             } 
         }
 
-        private void NewCallmonEvent(string eventtime, string whathappened, string callerid)
+        private string GetImportantData(string[] rawdata, int index)
         {
-            notification.NumberOrName = callerid;
-            notification.TimeStamp = eventtime;
+            return string.Empty;
+        }
 
+        private void NewCallmonEvent(string statusline)
+        {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<string, string, string>(NewCallmonEvent), eventtime, whathappened, callerid);
+                this.Invoke(new Action<string>(NewCallmonEvent), statusline);
             }
             else
             {
-                switch (whathappened)
+                string[] splittedstatus = new string[7];
+
+                splittedstatus = statusline.Split(new string[] { ";" }, StringSplitOptions.None);
+
+                frmPopup notification = new frmPopup();
+
+                notification.TimeStamp = splittedstatus[0];
+                
+
+                switch (splittedstatus[1])
                 {
                     case "RING":
+                        notification.Type = 0;
+                        notification.From = splittedstatus[3];
+                        notification.To = splittedstatus[4];
+                        notification.SIP = splittedstatus[5];
+                        
                         notification.Show(this);
                         break;
                     case "CALL":
-
+                        notification.Type = 1;
+                        notification.From = splittedstatus[4];
+                        notification.To = splittedstatus[5];
+                        notification.SIP = splittedstatus[6];
+                        notification.Show(this);
                         break;
                     case "CONNECT":
-
+                        notification = (frmPopup)Application.OpenForms["frmPopup"];
+                        notification.Close();
+                        notification = null;
                         break;
                     case "DISCONNECT":
+                        notification = (frmPopup)Application.OpenForms["frmPopup"];
                         notification.Close();
+                        notification = null;
                         break;
                 }
             }

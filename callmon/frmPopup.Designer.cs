@@ -48,6 +48,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.ControlBox = false;
             this.Controls.Add(this.lblDateAndTime);
             this.Controls.Add(this.lblNumber);
             this.ForeColor = System.Drawing.Color.Black;

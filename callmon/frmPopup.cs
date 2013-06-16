@@ -41,9 +41,11 @@ namespace callmon
 
         #endregion
 
-        public string NumberOrName { get; set; }
+        public byte Type { get; set; } // 0: RING (incoming call); 1: CALL (outgoing call)
+        public string From { get; set; }
+        public string To { get; set; }
         public string TimeStamp { get; set; }
-        public bool StillRinging { get; set; }
+        public string SIP { get; set; }
 
         private void frmPopup_Paint(object sender, PaintEventArgs e)
         {
@@ -52,7 +54,7 @@ namespace callmon
 
         private void frmPopup_VisibleChanged(object sender, EventArgs e)
         {
-            lblNumber.Text = NumberOrName;
+            lblNumber.Text = From;
             lblDateAndTime.Text = TimeStamp;
         }
     }
